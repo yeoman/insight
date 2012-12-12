@@ -4,3 +4,5 @@
 .gitattributes
 test
 .travis.yml
+screenshot.png
+screenshot-askpermission.png
