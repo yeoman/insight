@@ -1,0 +1,48 @@
+{
+  "name": "insight",
+  "version": "0.1.0",
+  "description": "Understand how your tool is being used by anonymously reporting usage metrics to Google Analytics",
+  "keywords": [
+    "npm",
+    "package",
+    "stats",
+    "google",
+    "analytics",
+    "track",
+    "metrics"
+  ],
+  "homepage": "https://github.com/yeoman/insight",
+  "bugs": "https://github.com/yeoman/insight/issues",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "main": "lib/insight.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yeoman/insight.git"
+  },
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha test/test-*.js"
+  },
+  "dependencies": {
+    "colors": "~0.6.0-1",
+    "request": "~2.12.0",
+    "configstore": "~0.1.0",
+    "async": "~0.1.22",
+    "lodash": "~1.0.0-rc.2",
+    "prompt": "~0.2.8"
+  },
+  "devDependencies": {
+    "mocha": "~1.7.4"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "licenses": [
+    {
+      "type": "BSD"
+    }
+  ]
+}
