@@ -2,7 +2,7 @@
 
 Understand how your tool is being used by anonymously reporting usage metrics to [Google Analytics](http://www.google.com/analytics/)
 
-**This module uses the [newly released Universal Analytics API](http://analytics.blogspot.com/2013/03/expanding-universal-analytics-into.html) from Google Analytics*
+*This module uses the [newly released Universal Analytics API](http://analytics.blogspot.com/2013/03/expanding-universal-analytics-into.html) from Google Analytics*
 
 
 ## Analytics dashboard example
