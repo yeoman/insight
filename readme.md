@@ -2,7 +2,7 @@
 
 Understand how your tool is being used by anonymously reporting usage metrics to [Google Analytics](http://www.google.com/analytics/)
 
-**This module uses an unreleased Google Analytics API and is therefore only usable in Yeoman which is white-listed**
+**This module uses the [newly released Universal Analytics API](http://analytics.blogspot.com/2013/03/expanding-universal-analytics-into.html) from Google Analytics*
 
 
 ## Analytics dashboard example
