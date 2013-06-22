@@ -32,7 +32,7 @@
     "configstore": "~0.1.0",
     "async": "~0.1.22",
     "lodash": "~1.0.0-rc.2",
-    "prompt": "~0.2.8"
+    "inquirer": "~0.1.9"
   },
   "devDependencies": {
     "mocha": "~1.7.4"
