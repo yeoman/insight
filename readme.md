@@ -1,6 +1,7 @@
 # Insight [![Build Status](https://secure.travis-ci.org/yeoman/insight.png?branch=master)](http://travis-ci.org/yeoman/insight)
 
 Understand how your tool is being used by anonymously reporting usage metrics to [Google Analytics](http://www.google.com/analytics/)
+or [Yandex.Metrica](http://metrica.yandex.com/)
 
 *This module uses the [newly released Universal Analytics API](http://analytics.blogspot.com/2013/03/expanding-universal-analytics-into.html) from Google Analytics*
 
@@ -13,6 +14,8 @@ Displaying metrics from [Yeoman](http://yeoman.io) which makes use of Insight.
 
 
 ## Example usage
+
+*Google Analytics*
 
 ```js
 var Insight = require('insight');
@@ -31,8 +34,27 @@ insight.track('foo', 'bar');
 // recorded in Analytics as `/foo/bar`
 ```
 
-or a [live example](https://github.com/yeoman/yeoman)
+*Yandex.Metrica*
 
+```js
+var Insight = require('insight');
+
+var insight = new Insight({
+	// Yandex.Metrica counter id
+	trackingCode: 'XXXXXXXXX'
+	trackingProvider: 'yandex'
+});
+
+// ask for permission the first time
+if (insight.optOut === undefined) {
+	return insight.askPermission();
+}
+
+insight.track('foo', 'bar');
+// recorded in Yandex.Metrica as `http://<package-name>.insight/foo/bar`
+```
+
+or a [live example](https://github.com/yeoman/yeoman)
 
 ## Documentation
 
@@ -44,7 +66,17 @@ or a [live example](https://github.com/yeoman/yeoman)
 Type: `string`  
 **Required**
 
-Your Google Analytics [trackingCode](https://support.google.com/analytics/bin/answer.py?hl=en&answer=1008080)
+Your Google Analytics [trackingCode](https://support.google.com/analytics/bin/answer.py?hl=en&answer=1008080) or
+Yandex.Metrica [counter id](http://help.yandex.com/metrika/?id=1121963).
+
+
+#### trackingProvider
+
+Type: `string`  
+Default: `'google'`
+
+Tracking provider to use  
+Possible values are `'google'` or `'yandex'`
 
 
 #### packagePath
