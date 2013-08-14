@@ -27,7 +27,7 @@
     "test": "node node_modules/mocha/bin/mocha test/test-*.js"
   },
   "dependencies": {
-    "colors": "~0.6.0-1",
+    "chalk": "~0.2.0",
     "request": "~2.26.0",
     "configstore": "~0.1.0",
     "async": "~0.2.9",
