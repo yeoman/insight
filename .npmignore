@@ -2,6 +2,7 @@
 .editorconfig
 .jshintrc
 .gitattributes
+.gitignore
 test
 .travis.yml
 screenshot.png
