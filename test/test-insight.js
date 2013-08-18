@@ -1,6 +1,7 @@
-/*global describe, it */
+/*global describe, it, beforeEach */
 'use strict';
 var assert = require('assert');
+var sinon = require('sinon');
 var Insight = require('../lib/insight');
 var _ = require('lodash');
 
@@ -64,5 +65,34 @@ describe('providers', function() {
 			assert.equal(cookie.name, 'yandexuid');
 			assert.equal(cookie.value, insight.clientId);
 		});
+	});
+});
+
+describe('config providers', function () {
+	beforeEach(function () {
+		var pkg = 'yeoman';
+		var ver = '0.0.0';
+
+		this.config = {
+			get: sinon.spy(function () { return true; }),
+			set: sinon.spy()
+		};
+
+		this.insight = new Insight({
+			packageName: pkg,
+			packageVersion: ver,
+			config: this.config
+		});
+	});
+
+	it('should access the config object for reading', function () {
+		assert(this.insight.optOut);
+		assert(this.config.get.called);
+	});
+
+	it('should access the config object for writing', function () {
+		var sentinel = {};
+		this.insight.optOut = sentinel;
+		assert(this.config.set.calledWith('optOut', sentinel));
 	});
 });
