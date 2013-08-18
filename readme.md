@@ -104,6 +104,18 @@ Default: Inferred from `packageFile`
 Used instead of inferring it from `packageFile`  
 Requires you to also specify `packageName`
 
+#### config
+
+Type: `object`  
+Default: An instance of [`configstore`](https://github.com/yeoman/configstore)
+
+If you want to use your own configuration mechanism instead of the default
+`configstore`-based one, you can provide an object that has to implement two
+synchronous methods:
+
+- `get(key)`
+- `set(key, value)`
+
 
 ### Instance methods
 
