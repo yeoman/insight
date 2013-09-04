@@ -19,7 +19,7 @@ Displaying metrics from [Yeoman](http://yeoman.io) which makes use of Insight.
 
 ```js
 var Insight = require('insight');
-var pkg = require('package.json');
+var pkg = require('./package.json');
 
 var insight = new Insight({
 	// Google Analytics tracking code
@@ -41,7 +41,7 @@ insight.track('foo', 'bar');
 
 ```js
 var Insight = require('insight');
-var pkg = require('package.json');
+var pkg = require('./package.json');
 
 var insight = new Insight({
 	// Yandex.Metrica counter id
