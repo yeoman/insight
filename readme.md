@@ -19,12 +19,13 @@ Displaying metrics from [Yeoman](http://yeoman.io) which makes use of Insight.
 
 ```js
 var Insight = require('insight');
+var pkg = require('package.json');
 
 var insight = new Insight({
 	// Google Analytics tracking code
 	trackingCode: 'UA-XXXXXXXX-X',
-	packageName: 'somepackage',
-	packageVersion: '0.0.1'
+	packageName: pkg.name,
+	packageVersion: pkg.version
 });
 
 // ask for permission the first time
@@ -40,12 +41,14 @@ insight.track('foo', 'bar');
 
 ```js
 var Insight = require('insight');
+var pkg = require('package.json');
 
 var insight = new Insight({
 	// Yandex.Metrica counter id
 	trackingCode: 'XXXXXXXXX'
 	trackingProvider: 'yandex',
-	packageName: 'somepackage'
+	packageName: pkg.name,
+	packageVersion: pkg.version
 });
 
 // ask for permission the first time
