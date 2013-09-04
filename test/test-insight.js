@@ -7,7 +7,7 @@ var _ = require('lodash');
 
 describe('Insight()', function() {
 	var insight = new Insight({
-		trackingCode: '',
+		trackingCode: 'xxx',
 		packageName: 'yeoman',
 		packageVersion: '0.0.0'
 	});
@@ -18,6 +18,22 @@ describe('Insight()', function() {
 			cb();
 		};
 		insight.track('test');
+	});
+
+	it('should throw exception when trackingCode or packageName is not provided', function(cb) {
+		assert.throws(function() {
+			var insight = new Insight({});
+		}, Error);
+
+		assert.throws(function() {
+			var insight = new Insight({ trackingCode: 'xxx' });
+		}, Error);
+
+		assert.throws(function() {
+			var insight = new Insight({ packageName: 'xxx' });
+		}, Error);
+
+		cb();
 	});
 });
 
@@ -79,6 +95,7 @@ describe('config providers', function () {
 		};
 
 		this.insight = new Insight({
+			trackingCode: 'xxx',
 			packageName: pkg,
 			packageVersion: ver,
 			config: this.config
