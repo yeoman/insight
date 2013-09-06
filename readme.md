@@ -19,10 +19,13 @@ Displaying metrics from [Yeoman](http://yeoman.io) which makes use of Insight.
 
 ```js
 var Insight = require('insight');
+var pkg = require('./package.json');
 
 var insight = new Insight({
 	// Google Analytics tracking code
-	trackingCode: 'UA-XXXXXXXX-X'
+	trackingCode: 'UA-XXXXXXXX-X',
+	packageName: pkg.name,
+	packageVersion: pkg.version
 });
 
 // ask for permission the first time
@@ -38,11 +41,14 @@ insight.track('foo', 'bar');
 
 ```js
 var Insight = require('insight');
+var pkg = require('./package.json');
 
 var insight = new Insight({
 	// Yandex.Metrica counter id
 	trackingCode: 'XXXXXXXXX'
-	trackingProvider: 'yandex'
+	trackingProvider: 'yandex',
+	packageName: pkg.name,
+	packageVersion: pkg.version
 });
 
 // ask for permission the first time
@@ -79,29 +85,19 @@ Tracking provider to use
 Possible values are `'google'` or `'yandex'`
 
 
-#### packagePath
-
-Type: `string`  
-Default: `'package.json'`
-
-Relative path to your module `package.json`
-
-
 #### packageName
 
 Type: `string`  
-Default: Inferred from `packageFile`
+**Required**
 
-Used instead of inferring it from `packageFile`  
 Requires you to also specify `packageVersion`
 
 
 #### packageVersion
 
 Type: `string`  
-Default: Inferred from `packageFile`
+Default: `'0.0.0'`
 
-Used instead of inferring it from `packageFile`  
 Requires you to also specify `packageName`
 
 #### config
