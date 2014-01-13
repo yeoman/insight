@@ -2,7 +2,6 @@
 'use strict';
 var assert = require('assert');
 var sinon = require('sinon');
-var qs = require('querystring');
 var Insight = require('../lib/insight');
 var _ = require('lodash');
 
