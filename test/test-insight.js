@@ -6,18 +6,32 @@ var Insight = require('../lib/insight');
 var _ = require('lodash');
 
 describe('Insight()', function() {
-	var insight = new Insight({
+	var insightOpts = {
 		trackingCode: 'xxx',
 		packageName: 'yeoman',
 		packageVersion: '0.0.0'
-	});
+	};
 
 	it('should put tracked path in queue', function(cb) {
+		var insight = new Insight(insightOpts);
 		Insight.prototype._save = function() {
 			assert.equal('/test', _.values(this._queue)[0]);
 			cb();
 		};
 		insight.track('test');
+	});
+
+	it('should put tracked path and params in queue', function(cb) {
+		var insight = new Insight(insightOpts);
+		Insight.prototype._save = function() {
+			assert.equal('/test/test2', _.values(this._queue)[0]);
+			var key = _.keys(this._queue)[0];
+			var parts = key.split(' ');
+			assert.equal('/test/test2', parts[1]);
+			assert.equal('param=one&version=0.0.0', parts[2]);
+			cb();
+		};
+		insight.track('test', 'test2', { param: 'one' });
 	});
 
 	it('should throw exception when trackingCode or packageName is not provided', function(cb) {
@@ -42,7 +56,8 @@ describe('providers', function() {
 		ver = '0.0.0',
 		code = 'GA-1234567-1',
 		ts = Date.UTC(2013, 7, 24, 22, 33, 44),
-		path = '/test/path';
+		path = '/test/path',
+		querystring = 'version=0.0.0';
 
 	describe('Google Analytics', function() {
 		var insight = new Insight({
@@ -52,7 +67,7 @@ describe('providers', function() {
 		});
 
 		it('should form valid request', function() {
-			var req = insight.getRequest(ts, path),
+			var req = insight.getRequest(ts, path, querystring),
 				qs = req.qs;
 
 			assert.equal(qs.tid, code);
@@ -60,6 +75,7 @@ describe('providers', function() {
 			assert.equal(qs.an, pkg);
 			assert.equal(qs.av, ver);
 			assert.equal(qs.dp, path);
+			assert.equal(qs.dl, path + '?' + querystring);
 		});
 	});
 
@@ -72,7 +88,7 @@ describe('providers', function() {
 		});
 
 		it('should form valid request', function() {
-			var req = insight.getRequest(ts, path),
+			var req = insight.getRequest(ts, path, querystring),
 				qs = req.qs,
 				cookie = req.jar.cookies[0];
 
