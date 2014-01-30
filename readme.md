@@ -69,7 +69,7 @@ or a [live example](https://github.com/yeoman/yeoman)
 
 #### trackingCode
 
-Type: `string`  
+Type: `string`
 **Required**
 
 Your Google Analytics [trackingCode](https://support.google.com/analytics/bin/answer.py?hl=en&answer=1008080) or
@@ -78,16 +78,16 @@ Yandex.Metrica [counter id](http://help.yandex.com/metrika/?id=1121963).
 
 #### trackingProvider
 
-Type: `string`  
+Type: `string`
 Default: `'google'`
 
-Tracking provider to use  
+Tracking provider to use
 Possible values are `'google'` or `'yandex'`
 
 
 #### packageName
 
-Type: `string`  
+Type: `string`
 **Required**
 
 Requires you to also specify `packageVersion`
@@ -95,14 +95,21 @@ Requires you to also specify `packageVersion`
 
 #### packageVersion
 
-Type: `string`  
+Type: `string`
 Default: `'0.0.0'`
 
 Requires you to also specify `packageName`
 
+#### clientId
+
+Type: `object`
+Default: Random value for clientId
+
+If you want to use your own client identificator, instead of random generated one.
+
 #### config
 
-Type: `object`  
+Type: `object`
 Default: An instance of [`configstore`](https://github.com/yeoman/configstore)
 
 If you want to use your own configuration mechanism instead of the default
