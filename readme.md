@@ -119,6 +119,7 @@ synchronous methods:
 - `get(key)`
 - `set(key, value)`
 
+(__Notice__: This will not disable Configstore in forked process)
 
 ### Instance methods
 
