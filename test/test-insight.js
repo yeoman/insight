@@ -3,7 +3,12 @@
 var assert = require('assert');
 var sinon = require('sinon');
 var Insight = require('../lib/insight');
-var _ = require('lodash');
+
+var values = function (obj) {
+    return Object.keys(obj).map(function (el) {
+        return obj[el];
+    });
+}
 
 describe('Insight()', function() {
 	var insight = new Insight({
@@ -14,7 +19,7 @@ describe('Insight()', function() {
 
 	it('should put tracked path in queue', function(cb) {
 		Insight.prototype._save = function() {
-			assert.equal('/test', _.values(this._queue)[0]);
+			assert.equal('/test', values(this._queue)[0]);
 			cb();
 		};
 		insight.track('test');
