@@ -3,6 +3,7 @@
 var assert = require('assert');
 var sinon = require('sinon');
 var Insight = require('../lib/insight');
+var spawn = require('child_process').spawn;
 
 var values = function (obj) {
     return Object.keys(obj).map(function (el) {
@@ -116,5 +117,17 @@ describe('config providers', function () {
 		var sentinel = {};
 		this.insight.optOut = sentinel;
 		assert(this.config.set.calledWith('optOut', sentinel));
+	});
+});
+
+describe('askPermission', function () {
+	it('should skip in TTY mode', function (done) {
+		var insProcess = spawn('node', [
+			'./test/fixtures/sub-process.js'
+		]);
+		insProcess.on('close', function (code) {
+			assert.equal(code, 145);
+			done();
+		});
 	});
 });
