@@ -1,4 +1,4 @@
-# Insight [![Build Status](https://secure.travis-ci.org/yeoman/insight.png?branch=master)](http://travis-ci.org/yeoman/insight)
+# Insight [![Build Status](https://secure.travis-ci.org/yeoman/insight.svg?branch=master)](http://travis-ci.org/yeoman/insight)
 
 Understand how your tool is being used by anonymously reporting usage metrics to [Google Analytics](http://www.google.com/analytics/)
 or [Yandex.Metrica](http://metrica.yandex.com/)
