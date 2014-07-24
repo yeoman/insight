@@ -1,15 +1,16 @@
 /*global describe, it, beforeEach */
 'use strict';
 var assert = require('assert');
+var osName = require('os-name');
 var sinon = require('sinon');
 var Insight = require('../lib/insight');
 var spawn = require('child_process').spawn;
 
 var values = function (obj) {
-    return Object.keys(obj).map(function (el) {
-        return obj[el];
-    });
-}
+	return Object.keys(obj).map(function (el) {
+		return obj[el];
+	});
+};
 
 describe('Insight()', function() {
 	var insight = new Insight({
@@ -66,6 +67,9 @@ describe('providers', function() {
 			assert.equal(qs.an, pkg);
 			assert.equal(qs.av, ver);
 			assert.equal(qs.dp, path);
+			assert.equal(qs.cd1, osName());
+			assert.equal(qs.cd2, process.version);
+			assert.equal(qs.cd3, ver);
 		});
 	});
 

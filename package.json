@@ -24,16 +24,17 @@
     "url": "git://github.com/yeoman/insight.git"
   },
   "scripts": {
-    "test": "mocha test/test-*.js"
+    "test": "mocha --reporter spec test/test-*.js"
   },
   "dependencies": {
-    "chalk": "~0.5.0",
-    "request": "~2.27.0",
-    "configstore": "~0.2.1",
     "async": "~0.2.9",
+    "chalk": "~0.5.0",
+    "configstore": "~0.2.1",
     "inquirer": "~0.4.0",
+    "lodash.debounce": "~2.4.1",
     "object-assign": "~0.1.2",
-    "lodash.debounce": "~2.4.1"
+    "os-name": "~0.1.2",
+    "request": "~2.27.0"
   },
   "devDependencies": {
     "mocha": "*",
