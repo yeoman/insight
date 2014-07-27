@@ -1,9 +1,7 @@
 .npmignore
 .editorconfig
 .jshintrc
-.gitattributes
-.gitignore
+.git*
 test
 .travis.yml
-screenshot.png
-screenshot-askpermission.png
+screenshot*
