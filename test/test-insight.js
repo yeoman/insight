@@ -1,10 +1,13 @@
 /*global describe, it, beforeEach */
 'use strict';
 var assert = require('assert');
+var qs = require('querystring');
+var spawn = require('child_process').spawn;
+
 var osName = require('os-name');
 var sinon = require('sinon');
 var Insight = require('../lib/insight');
-var spawn = require('child_process').spawn;
+
 
 var values = function (obj) {
 	return Object.keys(obj).map(function (el) {
@@ -59,18 +62,19 @@ describe('providers', function() {
 		});
 
 		it('should form valid request', function() {
-			var req = insight.getRequest(ts, path),
-				qs = req.qs;
+			var reqObj = insight._getRequestObj(ts, path);
+			var _qs = qs.parse(reqObj.body);
 
-			assert.equal(qs.tid, code);
-			assert.equal(qs.cid, insight.clientId);
-			assert.equal(qs.an, pkg);
-			assert.equal(qs.av, ver);
-			assert.equal(qs.dp, path);
-			assert.equal(qs.cd1, osName());
-			assert.equal(qs.cd2, process.version);
-			assert.equal(qs.cd3, ver);
+			assert.equal(_qs.tid, code);
+			assert.equal(_qs.cid, insight.clientId);
+			assert.equal(_qs.dp, path);
+			assert.equal(_qs.cd1, osName());
+			assert.equal(_qs.cd2, process.version);
+			assert.equal(_qs.cd3, ver);
 		});
+
+		// please see contributing.md
+		it('should show submitted data in Real Time dashboard, see docs on how to manually test');
 	});
 
 	describe('Yandex.Metrica', function() {
@@ -81,15 +85,25 @@ describe('providers', function() {
 			packageVersion: ver
 		});
 
-		it('should form valid request', function() {
-			var req = insight.getRequest(ts, path),
-				qs = req.qs,
-				cookie = req.jar.cookies[0];
+		it('should form valid request', function(done) {
+			var request = require('request');
 
-			assert.equal(qs['page-url'], 'http://' + pkg + '.insight/test/path?version=' + ver);
-			assert.equal(qs['browser-info'], 'i:20130824223344:z:0:t:' + path);
-			assert.equal(cookie.name, 'yandexuid');
-			assert.equal(cookie.value, insight.clientId);
+			// test querystrings
+			var reqObj = insight._getRequestObj(ts, path);
+			var _qs = reqObj.qs;
+
+			assert.equal(_qs['page-url'], 'http://' + pkg + '.insight/test/path?version=' + ver);
+			assert.equal(_qs['browser-info'], 'i:20130824223344:z:0:t:' + path);
+
+			// test cookie
+			request(reqObj, function (err) {
+				// cookie string looks like:
+				// [{"key":"name","value":"yandexuid",
+				//   "extensions":["value=80579748502"],"path":"/","creation":...
+				var cookieClientId = reqObj.jar.getCookies(reqObj.url)[0].extensions[0].split('=')[1];
+				assert.equal(cookieClientId, insight.clientId);
+				done(err);
+			});
 		});
 	});
 });
