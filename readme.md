@@ -6,11 +6,15 @@ or [Yandex.Metrica](http://metrica.yandex.com/)
 *This module uses the [newly released Universal Analytics API](http://analytics.blogspot.com/2013/03/expanding-universal-analytics-into.html) from Google Analytics*
 
 
-## Analytics dashboard example
+## Access data / generate dashboards
 
-Displaying metrics from [Yeoman](http://yeoman.io) which makes use of Insight.
+### Google Analytics (GA)
 
-![analytics screenshot](screenshot.png)
+- Use [Embed API](https://developers.google.com/analytics/devguides/reporting/embed/v1/) to embed charts
+- Use [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v3/) or [Real Time Reporting API](https://developers.google.com/analytics/devguides/reporting/realtime/v3/) to access raw data, then build custom visualization, e.g. [metrics from Bower](http://bower.io/stats/)
+- Use GA's dashboards directly, e.g. metrics from [Yeoman](http://yeoman.io):
+
+![analytics screenshot](screenshot-ga-dashboard.png)
 
 
 ## Provider Setup
@@ -24,7 +28,20 @@ For debugging, Insight can track OS version, node version and version of the app
 ![GA custom dimensions screenshot](screenshot-ga-custom-dimensions.png)
 
 
-## Example usage
+## Collected Data
+
+Insight cares deeply about the security of your user's data, and strives to be fully transparent with what it tracks. All data is sent via HTTPS secure connections. Insight provides API to offer an easy way for users to opt-out at any time.
+
+Below is what Insight is capable of tracking. Individual implementation can choose to not track some items.
+
+- The version of the module that implements Insight
+- Module commands (e.g. install / search)
+- Name and version of packages involved with command used
+- Version of node.js & OS for developer debugging
+- A random & absolutely anonymous ID
+
+
+## Example Usage
 
 *Google Analytics*
 
