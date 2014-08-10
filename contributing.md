@@ -1,6 +1,6 @@
 ## Testing
 
-In addition to the regular tests via `npm test`, contributor should also ensure analytics tracking vendor continues to receive data.
+In addition to the regular tests via `npm test`, contributors should also ensure the analytics tracking vendor continues to receive data.
 
 ### Google Analytics (GA)
 
