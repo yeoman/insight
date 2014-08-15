@@ -145,11 +145,11 @@ Accepts keywords which ends up as a path in Analytics.
 
 #### .askPermission([message, callback])
 
-Asks the user for permission to track and sets the `optOut` property. You can also choose to set this manually.
+Asks the user permission to opt-in to tracking and sets the `optOut` property in `config`. You can also choose to set `optOut` property in `config` manually.
 
 ![askPermission screenshot](screenshot-askpermission.png)
 
-Optionally supply your own `message` and `callback`. If `message` is `null`, default message will be used. The callback will be called with the arguments `error` and `optOut` when the prompt is done, and is useful for when you want to continue the execution while the prompt is running.
+Optionally supply your own `message` and `callback`. If `message` is `null`, default message will be used. The callback will be called with the arguments `error` and `optIn` when the prompt is done, and is useful for when you want to continue the execution while the prompt is running.
 
 
 #### .optOut
