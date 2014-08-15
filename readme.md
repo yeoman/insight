@@ -1,9 +1,7 @@
 # Insight [![Build Status](https://secure.travis-ci.org/yeoman/insight.svg?branch=master)](http://travis-ci.org/yeoman/insight)
 
-Understand how your tool is being used by anonymously reporting usage metrics to [Google Analytics](http://www.google.com/analytics/)
+> Understand how your tool is being used by anonymously reporting usage metrics to [Google Analytics](http://www.google.com/analytics/)
 or [Yandex.Metrica](http://metrica.yandex.com/)
-
-*This module uses the [newly released Universal Analytics API](http://analytics.blogspot.com/2013/03/expanding-universal-analytics-into.html) from Google Analytics*
 
 
 ## Access data / generate dashboards
@@ -41,9 +39,9 @@ Below is what Insight is capable of tracking. Individual implementation can choo
 - A random & absolutely anonymous ID
 
 
-## Example Usage
+## Usage
 
-*Google Analytics*
+### Google Analytics
 
 ```js
 var Insight = require('insight');
@@ -65,7 +63,7 @@ insight.track('foo', 'bar');
 // recorded in Analytics as `/foo/bar`
 ```
 
-*Yandex.Metrica*
+### Yandex.Metrica
 
 ```js
 var Insight = require('insight');
@@ -97,36 +95,32 @@ or a [live example](https://github.com/yeoman/yeoman)
 
 #### trackingCode
 
-Type: `string`  
-**Required**
+**Required**  
+Type: `string`
 
-Your Google Analytics [trackingCode](https://support.google.com/analytics/bin/answer.py?hl=en&answer=1008080) or
-Yandex.Metrica [counter id](http://help.yandex.com/metrika/?id=1121963).
-
+Your Google Analytics [trackingCode](https://support.google.com/analytics/bin/answer.py?hl=en&answer=1008080) or Yandex.Metrica [counter id](http://help.yandex.com/metrika/?id=1121963).
 
 #### trackingProvider
 
 Type: `string`  
 Default: `'google'`
 
-Tracking provider to use  
-Possible values are `'google'` or `'yandex'`
-
+Tracking provider to use.  
+Possible values are `'google'` or `'yandex'`.
 
 #### packageName
 
-Type: `string`  
-**Required**
+**Required**  
+Type: `string`
 
-Requires you to also specify `packageVersion`
-
+Requires you to also specify `packageVersion`.
 
 #### packageVersion
 
 Type: `string`  
 Default: `'0.0.0'`
 
-Requires you to also specify `packageName`
+Requires you to also specify `packageName`.
 
 #### config
 
@@ -143,13 +137,11 @@ synchronous methods:
 
 ### Instance methods
 
-
 #### .track(keyword, [keyword, ...])
 
 Accepts keywords which ends up as a path in Analytics.
 
 `.track('init', 'backbone')` becomes `/init/backbone`
-
 
 #### .askPermission([message, callback])
 

@@ -3,65 +3,58 @@
 var assert = require('assert');
 var qs = require('querystring');
 var spawn = require('child_process').spawn;
-
 var osName = require('os-name');
 var sinon = require('sinon');
-var Insight = require('../lib/insight');
+var objectValues = require('object-values');
+var Insight = require('../lib');
 
-
-var values = function (obj) {
-	return Object.keys(obj).map(function (el) {
-		return obj[el];
-	});
-};
-
-describe('Insight()', function() {
+describe('Insight()', function () {
 	var insight = new Insight({
 		trackingCode: 'xxx',
 		packageName: 'yeoman',
 		packageVersion: '0.0.0'
 	});
 
-	it('should put tracked path in queue', function(cb) {
+	it('should put tracked path in queue', function (cb) {
 		Insight.prototype._save = function() {
-			assert.equal('/test', values(this._queue)[0]);
+			assert.equal('/test', objectValues(this._queue)[0]);
 			cb();
 		};
 		insight.track('test');
 	});
 
-	it('should throw exception when trackingCode or packageName is not provided', function(cb) {
-		assert.throws(function() {
-			var insight = new Insight({});
+	it('should throw exception when trackingCode or packageName is not provided', function (cb) {
+		assert.throws(function () {
+			new Insight({});
 		}, Error);
 
-		assert.throws(function() {
-			var insight = new Insight({ trackingCode: 'xxx' });
+		assert.throws(function () {
+			new Insight({ trackingCode: 'xxx' });
 		}, Error);
 
-		assert.throws(function() {
-			var insight = new Insight({ packageName: 'xxx' });
+		assert.throws(function () {
+			new Insight({ packageName: 'xxx' });
 		}, Error);
 
 		cb();
 	});
 });
 
-describe('providers', function() {
+describe('providers', function () {
 	var pkg = 'yeoman',
 		ver = '0.0.0',
 		code = 'GA-1234567-1',
 		ts = Date.UTC(2013, 7, 24, 22, 33, 44),
 		path = '/test/path';
 
-	describe('Google Analytics', function() {
+	describe('Google Analytics', function () {
 		var insight = new Insight({
 			trackingCode: code,
 			packageName: pkg,
 			packageVersion: ver
 		});
 
-		it('should form valid request', function() {
+		it('should form valid request', function () {
 			var reqObj = insight._getRequestObj(ts, path);
 			var _qs = qs.parse(reqObj.body);
 
@@ -77,7 +70,7 @@ describe('providers', function() {
 		it('should show submitted data in Real Time dashboard, see docs on how to manually test');
 	});
 
-	describe('Yandex.Metrica', function() {
+	describe('Yandex.Metrica', function () {
 		var insight = new Insight({
 			trackingCode: code,
 			trackingProvider: 'yandex',
@@ -85,7 +78,7 @@ describe('providers', function() {
 			packageVersion: ver
 		});
 
-		it('should form valid request', function(done) {
+		it('should form valid request', function (done) {
 			var request = require('request');
 
 			// test querystrings
@@ -114,7 +107,9 @@ describe('config providers', function () {
 		var ver = '0.0.0';
 
 		this.config = {
-			get: sinon.spy(function () { return true; }),
+			get: sinon.spy(function () {
+				return true;
+			}),
 			set: sinon.spy()
 		};
 

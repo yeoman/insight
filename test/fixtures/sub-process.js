@@ -1,11 +1,10 @@
-var Insight = require('../../lib/insight.js');
-var pkg = 'yeoman',
-	ver = '0.0.0',
-	code = 'GA-1234567-1';
+'use strict';
+var Insight = require('../../lib');
+
 var insight = new Insight({
-	trackingCode: code,
-	packageName: pkg,
-	packageVersion: ver
+	packageName: 'yeoman',
+	packageVersion: '0.0.0',
+	trackingCode: 'GA-1234567-1'
 });
 
 insight.askPermission('', function () {

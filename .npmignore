@@ -1,8 +1,0 @@
-.npmignore
-.editorconfig
-.jshintrc
-.git*
-test
-.travis.yml
-screenshot*
-.idea
