@@ -50,8 +50,7 @@ var pkg = require('./package.json');
 var insight = new Insight({
 	// Google Analytics tracking code
 	trackingCode: 'UA-XXXXXXXX-X',
-	packageName: pkg.name,
-	packageVersion: pkg.version
+	pkg: pkg
 });
 
 // ask for permission the first time
@@ -73,8 +72,7 @@ var insight = new Insight({
 	// Yandex.Metrica counter id
 	trackingCode: 'XXXXXXXXX'
 	trackingProvider: 'yandex',
-	packageName: pkg.name,
-	packageVersion: pkg.version
+	pkg: pkg
 });
 
 // ask for permission the first time
@@ -104,23 +102,21 @@ Your Google Analytics [trackingCode](https://support.google.com/analytics/bin/an
 
 Type: `string`  
 Default: `'google'`
+Values: `'google'`, `'yandex'`
 
-Tracking provider to use.  
-Possible values are `'google'` or `'yandex'`.
+Tracking provider to use.
 
-#### packageName
+#### pkg
+
+##### name
 
 **Required**  
 Type: `string`
 
-Requires you to also specify `packageVersion`.
-
-#### packageVersion
+##### version
 
 Type: `string`  
-Default: `'0.0.0'`
-
-Requires you to also specify `packageName`.
+Default: `'undefined'`
 
 #### config
 
