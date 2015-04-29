@@ -143,4 +143,15 @@ describe('askPermission', function () {
 			done();
 		});
 	});
+
+	it('should skip when using the --no-insight flag', function (done) {
+		var insProcess = spawn('node', [
+			'./test/fixtures/sub-process.js',
+			'--no-insight'
+		], {stdio: 'inherit'});
+		insProcess.on('close', function (code) {
+			assert.equal(code, 145);
+			done();
+		});
+	});
 });
