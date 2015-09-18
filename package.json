@@ -3,7 +3,6 @@
   "version": "0.6.0",
   "description": "Understand how your tool is being used by anonymously reporting usage metrics to an analtyics vendor, e.g. Google Analytics.",
   "keywords": [
-    "npm",
     "package",
     "stats",
     "google",
@@ -14,7 +13,7 @@
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
-    "url": "http://sindresorhus.com"
+    "url": "sindresorhus.com"
   },
   "main": "lib",
   "repository": "yeoman/insight",
@@ -43,5 +42,5 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "license": "BSD"
+  "license": "BSD-2-Clause"
 }
