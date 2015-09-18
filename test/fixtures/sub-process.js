@@ -7,6 +7,10 @@ var insight = new Insight({
 	trackingCode: 'GA-1234567-1'
 });
 
+if (process.env.permissionTimeout) {
+    insight._permissionTimeout = process.env.permissionTimeout;
+}
+
 insight.askPermission('', function () {
 	process.exit(145);
 });
