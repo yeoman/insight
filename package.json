@@ -18,7 +18,7 @@
   "main": "lib",
   "repository": "yeoman/insight",
   "scripts": {
-    "test": "mocha --timeout 20000 --reporter spec test/test.js"
+    "test": "xo && mocha --timeout 20000 --reporter spec test/test.js"
   },
   "files": [
     "lib"
@@ -37,7 +37,8 @@
   "devDependencies": {
     "mocha": "*",
     "object-values": "^1.0.0",
-    "sinon": "*"
+    "sinon": "*",
+    "xo": "*"
   },
   "engines": {
     "node": ">=0.10.0"

@@ -1,4 +1,4 @@
-/*global describe, it, beforeEach */
+/* eslint-env mocha */
 'use strict';
 var assert = require('assert');
 var qs = require('querystring');
@@ -16,7 +16,7 @@ describe('Insight()', function () {
 	});
 
 	it('should put tracked path in queue', function (cb) {
-		Insight.prototype._save = function() {
+		Insight.prototype._save = function () {
 			assert.equal('/test', objectValues(this._queue)[0]);
 			cb();
 		};
@@ -24,16 +24,18 @@ describe('Insight()', function () {
 	});
 
 	it('should throw exception when trackingCode or packageName is not provided', function (cb) {
+		/* eslint-disable no-new */
+
 		assert.throws(function () {
 			new Insight({});
 		}, Error);
 
 		assert.throws(function () {
-			new Insight({ trackingCode: 'xxx' });
+			new Insight({trackingCode: 'xxx'});
 		}, Error);
 
 		assert.throws(function () {
-			new Insight({ packageName: 'xxx' });
+			new Insight({packageName: 'xxx'});
 		}, Error);
 
 		cb();
@@ -41,11 +43,11 @@ describe('Insight()', function () {
 });
 
 describe('providers', function () {
-	var pkg = 'yeoman',
-		ver = '0.0.0',
-		code = 'GA-1234567-1',
-		ts = Date.UTC(2013, 7, 24, 22, 33, 44),
-		path = '/test/path';
+	var pkg = 'yeoman';
+	var ver = '0.0.0';
+	var code = 'GA-1234567-1';
+	var ts = Date.UTC(2013, 7, 24, 22, 33, 44);
+	var path = '/test/path';
 
 	describe('Google Analytics', function () {
 		var insight = new Insight({
