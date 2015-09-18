@@ -155,6 +155,19 @@ describe('askPermission', function () {
 		});
 	});
 
+	it('should skip in CI mode', function (done) {
+		var env = JSON.parse(JSON.stringify(process.env));
+		env.CI = true;
+
+		var insProcess = spawn('node', [
+			'./test/fixtures/sub-process.js'
+		], {stdio: 'inherit', env: env});
+		insProcess.on('close', function (code) {
+			assert.equal(code, 145);
+			done();
+		});
+	});
+
 	it('should skip after timeout', function (done) {
 		var env = JSON.parse(JSON.stringify(process.env));
 		env.permissionTimeout = 0.1;
