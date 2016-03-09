@@ -91,8 +91,6 @@ insight.track('foo', 'bar');
 // recorded in Yandex.Metrica as `http://<package-name>.insight/foo/bar`
 ```
 
-or a [live example](https://github.com/yeoman/yeoman)
-
 
 ## API
 
