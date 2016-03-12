@@ -62,7 +62,7 @@ var insight = new Insight({
 
 // ask for permission the first time
 if (insight.optOut === undefined) {
-	return insight.askPermission();
+	insight.askPermission();
 }
 
 insight.track('foo', 'bar');
@@ -84,7 +84,7 @@ var insight = new Insight({
 
 // ask for permission the first time
 if (insight.optOut === undefined) {
-	return insight.askPermission();
+	insight.askPermission();
 }
 
 insight.track('foo', 'bar');
