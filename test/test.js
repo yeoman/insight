@@ -3,8 +3,10 @@
 var assert = require('assert');
 var qs = require('querystring');
 var spawn = require('child_process').spawn;
+var spawnPty = require('child_pty').spawn;
 var osName = require('os-name');
 var sinon = require('sinon');
+var stripAnsi = require('strip-ansi');
 var objectValues = require('object-values');
 var Insight = require('../lib');
 
@@ -161,35 +163,57 @@ describe('config providers', function () {
 });
 
 describe('askPermission', function () {
-	it('should skip in TTY mode', function (done) {
+	it('should skip in non-TTY mode', function (done) {
 		var insProcess = spawn('node', [
 			'./test/fixtures/sub-process.js'
 		]);
 		insProcess.on('close', function (code) {
+			assert.strictEqual(insProcess.stdout.read(), null);
+			assert.strictEqual(insProcess.stderr.read(), null);
 			assert.equal(code, 145);
 			done();
 		});
 	});
 
 	it('should skip when using the --no-insight flag', function (done) {
-		var insProcess = spawn('node', [
+		var insProcess = spawnPty('node', [
 			'./test/fixtures/sub-process.js',
 			'--no-insight'
-		], {stdio: 'inherit'});
+		], {stdio: ['pty', 'pty', 'pipe']});
+		var stdout;
+		var stderr;
+		insProcess.stdout.on('data', function (chunk) {
+			stdout = (stdout || '') + String(chunk);
+		});
+		insProcess.stderr.on('data', function (chunk) {
+			stderr = (stderr || '') + String(chunk);
+		});
 		insProcess.on('close', function (code) {
+			assert.strictEqual(stdout, undefined);
+			assert.strictEqual(stderr, undefined);
 			assert.equal(code, 145);
 			done();
 		});
 	});
 
-	it('should skip in CI mode', function (done) {
+	it('should skip in CI environment', function (done) {
 		var env = JSON.parse(JSON.stringify(process.env));
 		env.CI = true;
 
-		var insProcess = spawn('node', [
+		var insProcess = spawnPty('node', [
 			'./test/fixtures/sub-process.js'
-		], {stdio: 'inherit', env: env});
+		], {stdio: ['pty', 'pty', 'pipe'], env: env});
+		var stdout;
+		var stderr;
+		insProcess.stdout.on('data', function (chunk) {
+			stdout = (stdout || '') + String(chunk);
+		});
+		insProcess.stderr.on('data', function (chunk) {
+			stderr = (stderr || '') + String(chunk);
+		});
 		insProcess.on('close', function (code) {
+			assert.strictEqual(stdout, undefined);
+			assert.strictEqual(stderr, undefined);
 			assert.equal(code, 145);
 			done();
 		});
@@ -199,11 +223,50 @@ describe('askPermission', function () {
 		var env = JSON.parse(JSON.stringify(process.env));
 		env.permissionTimeout = 0.1;
 
-		var insProcess = spawn('node', [
+		var insProcess = spawnPty('node', [
 			'./test/fixtures/sub-process.js'
-		], {stdio: 'inherit', env: env});
-
+		], {stdio: ['pty', 'pty', 'pipe'], env: env});
+		var stdout;
+		var stderr;
+		insProcess.stdout.on('data', function (chunk) {
+			stdout = (stdout || '') + String(chunk);
+		});
+		insProcess.stderr.on('data', function (chunk) {
+			stderr = (stderr || '') + String(chunk);
+		});
 		insProcess.on('close', function (code) {
+			assert.equal(stripAnsi(stdout),
+				'? May yeoman anonymously report usage statistics to improve the tool over time?' +
+				' (Y/n) ');
+			assert.strictEqual(stderr, undefined);
+			assert.equal(code, 145);
+			done();
+		});
+	});
+
+	it('should take yes for an answer', function (done) {
+		var env = JSON.parse(JSON.stringify(process.env));
+		env.permissionTimeout = 1;
+
+		var insProcess = spawnPty('node', [
+			'./test/fixtures/sub-process.js'
+		], {stdio: ['pty', 'pty', 'pipe'], env: env});
+		var stdin = 'Y\n';
+		var stdout;
+		var stderr;
+		insProcess.stdout.on('data', function (chunk) {
+			stdout = (stdout || '') + String(chunk);
+			if (stdin && /y\/n/i.test(stripAnsi(stdout))) {
+				insProcess.stdin.write(stdin);
+				stdin = false;
+			}
+		});
+		insProcess.stderr.on('data', function (chunk) {
+			stderr = (stderr || '') + String(chunk);
+		});
+		insProcess.on('close', function (code) {
+			assert.ok(/Yes[\r\n]*$/.test(stripAnsi(stdout)), 'input acknowledged');
+			assert.equal(stderr, 'optOut=false');
 			assert.equal(code, 145);
 			done();
 		});
