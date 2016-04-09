@@ -17,7 +17,7 @@ describe('Insight()', function () {
 
 	it('should put tracked path in queue', function (cb) {
 		Insight.prototype._save = function () {
-			assert.equal('/test', objectValues(this._queue)[0]);
+			assert.equal('/test', objectValues(this._queue)[0].path);
 			cb();
 		};
 		insight.track('test');
@@ -47,7 +47,17 @@ describe('providers', function () {
 	var ver = '0.0.0';
 	var code = 'GA-1234567-1';
 	var ts = Date.UTC(2013, 7, 24, 22, 33, 44);
-	var path = '/test/path';
+	var pageviewPayload = {
+		path: '/test/path',
+		type: 'pageview'
+	};
+	var eventPayload = {
+		category: 'category',
+		action: 'action',
+		label: 'label',
+		value: 'value',
+		type: 'event'
+	};
 
 	describe('Google Analytics', function () {
 		var insight = new Insight({
@@ -56,13 +66,28 @@ describe('providers', function () {
 			packageVersion: ver
 		});
 
-		it('should form valid request', function () {
-			var reqObj = insight._getRequestObj(ts, path);
+		it('should form valid request for pageview', function () {
+			var reqObj = insight._getRequestObj(ts, pageviewPayload);
 			var _qs = qs.parse(reqObj.body);
 
 			assert.equal(_qs.tid, code);
 			assert.equal(_qs.cid, insight.clientId);
-			assert.equal(_qs.dp, path);
+			assert.equal(_qs.dp, pageviewPayload.path);
+			assert.equal(_qs.cd1, osName());
+			assert.equal(_qs.cd2, process.version);
+			assert.equal(_qs.cd3, ver);
+		});
+
+		it('should form valid request for eventTracking', function () {
+			var reqObj = insight._getRequestObj(ts, eventPayload);
+			var _qs = qs.parse(reqObj.body);
+
+			assert.equal(_qs.tid, code);
+			assert.equal(_qs.cid, insight.clientId);
+			assert.equal(_qs.ec, eventPayload.category);
+			assert.equal(_qs.ea, eventPayload.action);
+			assert.equal(_qs.el, eventPayload.label);
+			assert.equal(_qs.ev, eventPayload.value);
 			assert.equal(_qs.cd1, osName());
 			assert.equal(_qs.cd2, process.version);
 			assert.equal(_qs.cd3, ver);
@@ -84,11 +109,11 @@ describe('providers', function () {
 			var request = require('request');
 
 			// test querystrings
-			var reqObj = insight._getRequestObj(ts, path);
+			var reqObj = insight._getRequestObj(ts, pageviewPayload);
 			var _qs = reqObj.qs;
 
 			assert.equal(_qs['page-url'], 'http://' + pkg + '.insight/test/path?version=' + ver);
-			assert.equal(_qs['browser-info'], 'i:20130824223344:z:0:t:' + path);
+			assert.equal(_qs['browser-info'], 'i:20130824223344:z:0:t:' + pageviewPayload.path);
 
 			// test cookie
 			request(reqObj, function (err) {
