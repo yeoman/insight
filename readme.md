@@ -40,7 +40,7 @@ Insight cares deeply about the security of your user's data, and strives to be f
 Below is what Insight is capable of tracking. Individual implementation can choose to not track some items.
 
 - The version of the module that implements Insight
-- Module commands (e.g. install / search)
+- Module commands/events (e.g. install / search)
 - Name and version of packages involved with command used
 - Version of node.js & OS for developer debugging
 - A random & absolutely anonymous ID
@@ -67,6 +67,9 @@ if (insight.optOut === undefined) {
 
 insight.track('foo', 'bar');
 // recorded in Analytics as `/foo/bar`
+
+insight.trackEvent('eventCategory', 'eventAction', 'eventLabel', 'eventValue');
+// recorded in Analytics behavior/events section
 ```
 
 ### Yandex.Metrica
@@ -143,6 +146,12 @@ synchronous methods:
 Accepts keywords which ends up as a path in Analytics.
 
 `.track('init', 'backbone')` becomes `/init/backbone`
+
+#### .trackEvent(category, action, [label, value])
+
+Accepts event category, action, label and value as described in the [GA event tracking](https://developers.google.com/analytics/devguides/collection/analyticsjs/events) documentation. Note: Does not work with Yandex.Metrica
+
+`.trackEvent('download', 'image', 'logo-image')`
 
 #### .askPermission([message, callback])
 
