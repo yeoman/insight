@@ -68,7 +68,12 @@ if (insight.optOut === undefined) {
 insight.track('foo', 'bar');
 // recorded in Analytics as `/foo/bar`
 
-insight.trackEvent('eventCategory', 'eventAction', 'eventLabel', 'eventValue');
+insight.trackEvent({
+	category: 'eventCategory',
+	action: 'eventAction',
+	label: 'eventLabel',
+	value: 'eventValue'
+});
 // recorded in Analytics behavior/events section
 ```
 
@@ -147,11 +152,44 @@ Accepts keywords which ends up as a path in Analytics.
 
 `.track('init', 'backbone')` becomes `/init/backbone`
 
-#### .trackEvent(category, action, [label, value])
+#### .trackEvent(options)
 
-Accepts event category, action, label and value as described in the [GA event tracking](https://developers.google.com/analytics/devguides/collection/analyticsjs/events) documentation. Note: Does not work with Yandex.Metrica
+Accepts event category, action, label and value as described in the [GA event tracking](https://developers.google.com/analytics/devguides/collection/analyticsjs/events) documentation via the options object. Note: Does not work with Yandex.Metrica.
 
-`.trackEvent('download', 'image', 'logo-image')`
+```js
+.trackEvent({
+	category: 'download',
+	action: 'image',
+	label: 'logo-image'
+});
+```
+
+##### category
+
+**Required**  
+Type: `string`
+
+Event category: Typically the object that was interacted with (e.g. 'Video').
+
+##### action
+
+**Required**  
+Type: `string`
+
+Event action: The type of interaction (e.g. 'play').
+
+##### label
+
+Type: `string`
+
+Event label: Useful for categorizing events (e.g. 'Fall Campaign').
+
+##### value
+
+Type: `integer`
+
+Event value: A numeric value associated with the event (e.g. 42).
+
 
 #### .askPermission([message, callback])
 
