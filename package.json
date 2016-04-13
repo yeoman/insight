@@ -1,6 +1,6 @@
 {
   "name": "insight",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Understand how your tool is being used by anonymously reporting usage metrics to an analtyics vendor, e.g. Google Analytics.",
   "keywords": [
     "package",
