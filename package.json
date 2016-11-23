@@ -1,27 +1,34 @@
 {
   "name": "insight",
   "version": "0.8.3",
-  "description": "Understand how your tool is being used by anonymously reporting usage metrics to an analtyics vendor, e.g. Google Analytics.",
-  "keywords": [
-    "package",
-    "stats",
-    "google",
-    "analytics",
-    "track",
-    "metrics"
-  ],
+  "description": "Understand how your tool is being used by anonymously reporting usage metrics to Google Analytics or Yandex.Metrica",
+  "license": "BSD-2-Clause",
+  "repository": "yeoman/insight",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com"
   },
   "main": "lib",
-  "repository": "yeoman/insight",
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "scripts": {
     "test": "xo && mocha --timeout 20000 --reporter spec test/test.js"
   },
   "files": [
     "lib"
+  ],
+  "keywords": [
+    "package",
+    "stats",
+    "google",
+    "analytics",
+    "track",
+    "metrics",
+    "stats",
+    "yandex",
+    "metrica"
   ],
   "dependencies": {
     "async": "^1.4.2",
@@ -39,10 +46,6 @@
     "mocha": "*",
     "object-values": "^1.0.0",
     "sinon": "*",
-    "xo": "^0.17.0"
-  },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "license": "BSD-2-Clause"
+    "xo": "^0.16.0"
+  }
 }

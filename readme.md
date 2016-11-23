@@ -1,7 +1,6 @@
 # Insight [![Build Status](https://secure.travis-ci.org/yeoman/insight.svg?branch=master)](http://travis-ci.org/yeoman/insight)
 
-> Understand how your tool is being used by anonymously reporting usage metrics to [Google Analytics](http://www.google.com/analytics/)
-or [Yandex.Metrica](http://metrica.yandex.com/)
+> Understand how your tool is being used by anonymously reporting usage metrics to [Google Analytics](https://www.google.com/analytics/) or [Yandex.Metrica](https://metrica.yandex.com)
 
 
 ## Install
@@ -51,13 +50,13 @@ Below is what Insight is capable of tracking. Individual implementation can choo
 ### Google Analytics
 
 ```js
-var Insight = require('insight');
-var pkg = require('./package.json');
+const Insight = require('insight');
+const pkg = require('./package.json');
 
-var insight = new Insight({
+const insight = new Insight({
 	// Google Analytics tracking code
 	trackingCode: 'UA-XXXXXXXX-X',
-	pkg: pkg
+	pkg
 });
 
 // ask for permission the first time
@@ -80,14 +79,14 @@ insight.trackEvent({
 ### Yandex.Metrica
 
 ```js
-var Insight = require('insight');
-var pkg = require('./package.json');
+const Insight = require('insight');
+const pkg = require('./package.json');
 
 var insight = new Insight({
 	// Yandex.Metrica counter id
 	trackingCode: 'XXXXXXXXX'
 	trackingProvider: 'yandex',
-	pkg: pkg
+	pkg
 });
 
 // ask for permission the first time
@@ -102,20 +101,20 @@ insight.track('foo', 'bar');
 
 ## API
 
-### Insight(settings)
+### Insight(options)
 
 #### trackingCode
 
-**Required**  
+**Required**<br>
 Type: `string`
 
 Your Google Analytics [trackingCode](https://support.google.com/analytics/bin/answer.py?hl=en&answer=1008080) or Yandex.Metrica [counter id](http://help.yandex.com/metrika/?id=1121963).
 
 #### trackingProvider
 
-Type: `string`  
-Default: `'google'`
-Values: `'google'`, `'yandex'`
+Type: `string`<br>
+Default: `google`<br>
+Values: `google`, `yandex`
 
 Tracking provider to use.
 
@@ -123,26 +122,23 @@ Tracking provider to use.
 
 ##### name
 
-**Required**  
+**Required**<br>
 Type: `string`
 
 ##### version
 
-Type: `string`  
+Type: `string`<br>
 Default: `'undefined'`
 
 #### config
 
-Type: `object`  
+Type: `object`<br>
 Default: An instance of [`configstore`](https://github.com/yeoman/configstore)
 
-If you want to use your own configuration mechanism instead of the default
-`configstore`-based one, you can provide an object that has to implement two
-synchronous methods:
+If you want to use your own configuration mechanism instead of the default `configstore`-based one, you can provide an object that has to implement two synchronous methods:
 
 - `get(key)`
 - `set(key, value)`
-
 
 ### Instance methods
 
@@ -166,14 +162,14 @@ Accepts event category, action, label and value as described in the [GA event tr
 
 ##### category
 
-**Required**  
+**Required**<br>
 Type: `string`
 
 Event category: Typically the object that was interacted with (e.g. 'Video').
 
 ##### action
 
-**Required**  
+**Required**<br>
 Type: `string`
 
 Event action: The type of interaction (e.g. 'play').
@@ -190,7 +186,6 @@ Type: `integer`
 
 Event value: A numeric value associated with the event (e.g. 42).
 
-
 #### .askPermission([message, callback])
 
 Asks the user permission to opt-in to tracking and sets the `optOut` property in `config`. You can also choose to set `optOut` property in `config` manually.
@@ -198,7 +193,6 @@ Asks the user permission to opt-in to tracking and sets the `optOut` property in
 ![askPermission screenshot](screenshot-askpermission.png)
 
 Optionally supply your own `message` and `callback`. If `message` is `null`, default message will be used. The callback will be called with the arguments `error` and `optIn` when the prompt is done, and is useful for when you want to continue the execution while the prompt is running.
-
 
 #### .optOut
 

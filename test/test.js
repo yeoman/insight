@@ -25,7 +25,6 @@ describe('Insight()', function () {
 
 	it('should throw exception when trackingCode or packageName is not provided', function (cb) {
 		/* eslint-disable no-new */
-
 		assert.throws(function () {
 			new Insight({});
 		}, Error);
@@ -37,6 +36,7 @@ describe('Insight()', function () {
 		assert.throws(function () {
 			new Insight({packageName: 'xxx'});
 		}, Error);
+		/* eslint-enable no-new */
 
 		cb();
 	});
@@ -202,6 +202,7 @@ describe('askPermission', function () {
 		var insProcess = spawn('node', [
 			'./test/fixtures/sub-process.js'
 		], {stdio: 'inherit', env: env});
+
 		insProcess.on('close', function (code) {
 			assert.equal(code, 145);
 			done();
