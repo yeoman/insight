@@ -29,11 +29,11 @@
     "configstore": "^1.0.0",
     "inquirer": "^0.10.0",
     "lodash.debounce": "^3.0.1",
-    "node-uuid": "^1.4.7",
     "object-assign": "^4.0.1",
     "os-name": "^1.0.0",
     "request": "^2.74.0",
-    "tough-cookie": "^2.0.0"
+    "tough-cookie": "^2.0.0",
+    "uuid": "^3.0.0"
   },
   "devDependencies": {
     "mocha": "*",
