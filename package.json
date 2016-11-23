@@ -39,7 +39,7 @@
     "mocha": "*",
     "object-values": "^1.0.0",
     "sinon": "*",
-    "xo": "*"
+    "xo": "^0.17.0"
   },
   "engines": {
     "node": ">=0.10.0"
