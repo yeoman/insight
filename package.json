@@ -11,7 +11,7 @@
   },
   "main": "lib",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4"
   },
   "scripts": {
     "test": "xo && mocha --timeout 20000 --reporter spec test/test.js"
@@ -31,13 +31,12 @@
     "metrica"
   ],
   "dependencies": {
-    "async": "^1.4.2",
+    "async": "^2.1.4",
     "chalk": "^1.0.0",
-    "configstore": "^1.0.0",
-    "inquirer": "^0.10.0",
-    "lodash.debounce": "^3.0.1",
-    "object-assign": "^4.0.1",
-    "os-name": "^1.0.0",
+    "configstore": "^2.1.0",
+    "inquirer": "^3.0.1",
+    "lodash.debounce": "^4.0.8",
+    "os-name": "^2.0.1",
     "request": "^2.74.0",
     "tough-cookie": "^2.0.0",
     "uuid": "^3.0.0"
@@ -46,6 +45,6 @@
     "mocha": "*",
     "object-values": "^1.0.0",
     "sinon": "*",
-    "xo": "^0.16.0"
+    "xo": "^0.17.1"
   }
 }
