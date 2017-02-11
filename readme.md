@@ -59,13 +59,13 @@ const insight = new Insight({
 	pkg
 });
 
-// ask for permission the first time
+// Ask for permission the first time
 if (insight.optOut === undefined) {
 	insight.askPermission();
 }
 
 insight.track('foo', 'bar');
-// recorded in Analytics as `/foo/bar`
+// Recorded in Analytics as `/foo/bar`
 
 insight.trackEvent({
 	category: 'eventCategory',
@@ -73,7 +73,7 @@ insight.trackEvent({
 	label: 'eventLabel',
 	value: 'eventValue'
 });
-// recorded in Analytics behavior/events section
+// Recorded in Analytics behavior/events section
 ```
 
 ### Yandex.Metrica
@@ -82,20 +82,20 @@ insight.trackEvent({
 const Insight = require('insight');
 const pkg = require('./package.json');
 
-var insight = new Insight({
+const insight = new Insight({
 	// Yandex.Metrica counter id
 	trackingCode: 'XXXXXXXXX'
 	trackingProvider: 'yandex',
 	pkg
 });
 
-// ask for permission the first time
+// Ask for permission the first time
 if (insight.optOut === undefined) {
 	insight.askPermission();
 }
 
 insight.track('foo', 'bar');
-// recorded in Yandex.Metrica as `http://<package-name>.insight/foo/bar`
+// Recorded in Yandex.Metrica as `http://<package-name>.insight/foo/bar`
 ```
 
 
@@ -114,7 +114,7 @@ Your Google Analytics [trackingCode](https://support.google.com/analytics/bin/an
 
 Type: `string`<br>
 Default: `google`<br>
-Values: `google`, `yandex`
+Values: `google` `yandex`
 
 Tracking provider to use.
 
@@ -132,7 +132,7 @@ Default: `'undefined'`
 
 #### config
 
-Type: `object`<br>
+Type: `Object`<br>
 Default: An instance of [`configstore`](https://github.com/yeoman/configstore)
 
 If you want to use your own configuration mechanism instead of the default `configstore`-based one, you can provide an object that has to implement two synchronous methods:
