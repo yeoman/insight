@@ -1,5 +1,7 @@
 # Insight [![Build Status](https://secure.travis-ci.org/yeoman/insight.svg?branch=master)](http://travis-ci.org/yeoman/insight)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/yeoman/insight.svg)](https://greenkeeper.io/)
+
 > Understand how your tool is being used by anonymously reporting usage metrics to [Google Analytics](https://www.google.com/analytics/) or [Yandex.Metrica](https://metrica.yandex.com)
 
 
