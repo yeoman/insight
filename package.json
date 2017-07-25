@@ -43,6 +43,7 @@
   "devDependencies": {
     "ava": "*",
     "execa": "^0.7.0",
+    "object-values": "^1.0.0",
     "sinon": "*",
     "xo": "^0.17.1"
   }
