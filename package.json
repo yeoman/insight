@@ -14,7 +14,7 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "xo && mocha --timeout 20000 --reporter spec test/test.js"
+    "test": "xo && ava --timeout 20s"
   },
   "files": [
     "lib"
@@ -41,7 +41,7 @@
     "uuid": "^3.0.0"
   },
   "devDependencies": {
-    "mocha": "*",
+    "ava": "*",
     "object-values": "^1.0.0",
     "sinon": "*",
     "xo": "^0.17.1"
