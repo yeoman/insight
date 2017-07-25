@@ -1,4 +1,3 @@
-
 import sinon from 'sinon';
 import test from 'ava';
 import Insight from '../lib';
@@ -11,9 +10,7 @@ let insight;
 
 test.beforeEach(() => {
 	config = {
-		get: sinon.spy(() => {
-			return true;
-		}),
+		get: sinon.spy(() => true),
 		set: sinon.spy()
 	};
 
@@ -26,12 +23,12 @@ test.beforeEach(() => {
 });
 
 test('access the config object for reading', t => {
-	t.truthy(insight.optOut);
-	t.truthy(config.get.called);
+	t.true(insight.optOut);
+	t.true(config.get.called);
 });
 
 test('access the config object for writing', t => {
 	const sentinel = {};
 	insight.optOut = sentinel;
-	t.truthy(config.set.calledWith('optOut', sentinel));
+	t.true(config.set.calledWith('optOut', sentinel));
 });

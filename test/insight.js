@@ -1,4 +1,3 @@
-import objectValues from 'object-values';
 import test from 'ava';
 import Insight from '../lib';
 
@@ -12,7 +11,7 @@ insight.optOut = false;
 
 test('put tracked path in queue', t => {
 	Insight.prototype._save = function () {
-		t.is('/test', objectValues(this._queue)[0].path);
+		t.is('/test', Object.values(this._queue)[0].path);
 	};
 	insight.track('test');
 });

@@ -1,58 +1,36 @@
-import {spawn} from 'child_process';
+import execa from 'execa';
 import test from 'ava';
 
-test.cb('skip in TTY mode', t => {
-	t.plan(1);
-
-	const insProcess = spawn('node', [
-		'./test/fixtures/sub-process.js'
-	]);
-	insProcess.on('close', code => {
-		t.is(code, 145);
-		t.end();
-	});
+test('skip in TTY mode', async t => {
+	const err = await t.throws(execa('node', ['./test/fixtures/sub-process.js']));
+	t.is(err.code, 145);
 });
 
-test.cb('skip when using the --no-insight flag', t => {
-	t.plan(1);
-
-	const insProcess = spawn('node', [
-		'./test/fixtures/sub-process.js',
-		'--no-insight'
-	], {stdio: 'inherit'});
-	insProcess.on('close', code => {
-		t.is(code, 145);
-		t.end();
-	});
+test('skip when using the --no-insight flag', async t => {
+	const err = await t.throws(execa('node', ['./test/fixtures/sub-process.js', '--no-insight'], {stdio: 'inherit'}));
+	t.is(err.code, 145);
 });
 
-test.cb('skip in CI mode', t => {
-	t.plan(1);
+test('skip in CI mode', async t => {
+	const CI = process.env.CI;
+	process.env.CI = true;
 
-	const env = JSON.parse(JSON.stringify(process.env));
-	env.CI = true;
+	const err = await t.throws(execa('node', ['./test/fixtures/sub-process.js'], {stdio: 'inherit'}));
+	t.is(err.code, 145);
 
-	const insProcess = spawn('node', [
-		'./test/fixtures/sub-process.js'
-	], {stdio: 'inherit', env});
-	insProcess.on('close', code => {
-		t.is(code, 145);
-		t.end();
-	});
+	process.env.CI = CI;
 });
 
-test.cb('skip after timeout', t => {
-	t.plan(1);
+test('skip after timeout', async t => {
+	const CI = process.env.CI;
+	const permissionTimeout = process.env.permissionTimeout;
 
-	const env = JSON.parse(JSON.stringify(process.env));
-	env.permissionTimeout = 0.1;
+	process.env.CI = true;
+	process.env.permissionTimeout = 0.1;
 
-	const insProcess = spawn('node', [
-		'./test/fixtures/sub-process.js'
-	], {stdio: 'inherit', env});
+	const err = await t.throws(execa('node', ['./test/fixtures/sub-process.js'], {stdio: 'inherit'}));
+	t.is(err.code, 145);
 
-	insProcess.on('close', code => {
-		t.is(code, 145);
-		t.end();
-	});
+	process.env.CI = CI;
+	process.env.permissionTimeout = permissionTimeout;
 });
