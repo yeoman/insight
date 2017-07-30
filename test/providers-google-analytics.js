@@ -26,8 +26,8 @@ const insight = new Insight({
 });
 
 test('form valid request for pageview', t => {
-	const reqObj = insight._getRequestObj(ts, pageviewPayload);
-	const _qs = qs.parse(reqObj.body);
+	const reqObj = insight._getGotObj(ts, pageviewPayload);
+	const _qs = qs.parse(reqObj.options.body);
 
 	t.is(_qs.tid, code);
 	t.is(Number(_qs.cid), Number(insight.clientId));
@@ -38,8 +38,8 @@ test('form valid request for pageview', t => {
 });
 
 test('form valid request for eventTracking', t => {
-	const reqObj = insight._getRequestObj(ts, eventPayload);
-	const _qs = qs.parse(reqObj.body);
+	const reqObj = insight._getGotObj(ts, eventPayload);
+	const _qs = qs.parse(reqObj.options.body);
 
 	t.is(_qs.tid, code);
 	t.is(Number(_qs.cid), Number(insight.clientId));

@@ -17,22 +17,17 @@ const insight = new Insight({
 	packageVersion: ver
 });
 
-test('form valid request', async t => {
-	const request = require('request');
-
+test('form valid request', t => {
 	// Test querystrings
-	const reqObj = insight._getRequestObj(ts, pageviewPayload);
-	const _qs = reqObj.qs;
+	const reqObj = insight._getGotObj(ts, pageviewPayload);
+	const _qs = reqObj.options.query;
 
 	t.is(_qs['page-url'], `http://${pkg}.insight/test/path?version=${ver}`);
 	t.is(_qs['browser-info'], `i:20130824223344:z:0:t:${pageviewPayload.path}`);
 
-	// Test cookie
-	await request(reqObj);
-
 	// Cookie string looks like:
 	// [{"key":"name","value":"yandexuid",
 	// 	"extensions":["value=80579748502"],"path":"/","creation":...
-	const cookieClientId = reqObj.jar.getCookies(reqObj.url)[0].extensions[0].split('=')[1];
+	const cookieClientId = reqObj.options.header.cookie.extensions[0].split('=')[1];
 	t.is(Number(cookieClientId), Number(insight.clientId));
 });

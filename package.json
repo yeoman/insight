@@ -33,10 +33,10 @@
 		"async": "^2.1.4",
 		"chalk": "^1.0.0",
 		"configstore": "^2.1.0",
+		"got": "^7.1.0",
 		"inquirer": "^3.0.1",
 		"lodash.debounce": "^4.0.8",
 		"os-name": "^2.0.1",
-		"request": "^2.74.0",
 		"tough-cookie": "^2.0.0",
 		"uuid": "^3.0.0"
 	},
