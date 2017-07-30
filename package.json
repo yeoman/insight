@@ -1,50 +1,50 @@
 {
-  "name": "insight",
-  "version": "0.8.4",
-  "description": "Understand how your tool is being used by anonymously reporting usage metrics to Google Analytics or Yandex.Metrica",
-  "license": "BSD-2-Clause",
-  "repository": "yeoman/insight",
-  "author": {
-    "name": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "sindresorhus.com"
-  },
-  "main": "lib",
-  "engines": {
-    "node": ">=4"
-  },
-  "scripts": {
-    "test": "xo && ava --timeout 20s"
-  },
-  "files": [
-    "lib"
-  ],
-  "keywords": [
-    "package",
-    "stats",
-    "google",
-    "analytics",
-    "track",
-    "metrics",
-    "yandex",
-    "metrica"
-  ],
-  "dependencies": {
-    "async": "^2.1.4",
-    "chalk": "^1.0.0",
-    "configstore": "^2.1.0",
-    "inquirer": "^3.0.1",
-    "lodash.debounce": "^4.0.8",
-    "os-name": "^2.0.1",
-    "request": "^2.74.0",
-    "tough-cookie": "^2.0.0",
-    "uuid": "^3.0.0"
-  },
-  "devDependencies": {
-    "ava": "*",
-    "execa": "^0.7.0",
-    "object-values": "^1.0.0",
-    "sinon": "*",
-    "xo": "^0.17.1"
-  }
+	"name": "insight",
+	"version": "0.8.4",
+	"description": "Understand how your tool is being used by anonymously reporting usage metrics to Google Analytics or Yandex.Metrica",
+	"license": "BSD-2-Clause",
+	"repository": "yeoman/insight",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"main": "lib",
+	"engines": {
+		"node": ">=4"
+	},
+	"scripts": {
+		"test": "xo && ava --timeout=20s"
+	},
+	"files": [
+		"lib"
+	],
+	"keywords": [
+		"package",
+		"stats",
+		"google",
+		"analytics",
+		"track",
+		"metrics",
+		"yandex",
+		"metrica"
+	],
+	"dependencies": {
+		"async": "^2.1.4",
+		"chalk": "^1.0.0",
+		"configstore": "^2.1.0",
+		"inquirer": "^3.0.1",
+		"lodash.debounce": "^4.0.8",
+		"os-name": "^2.0.1",
+		"request": "^2.74.0",
+		"tough-cookie": "^2.0.0",
+		"uuid": "^3.0.0"
+	},
+	"devDependencies": {
+		"ava": "*",
+		"execa": "^0.7.0",
+		"object-values": "^1.0.0",
+		"sinon": "*",
+		"xo": "^0.18.2"
+	}
 }

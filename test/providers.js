@@ -18,7 +18,7 @@ test.beforeEach(() => {
 		trackingCode: 'xxx',
 		packageName: pkg,
 		packageVersion: ver,
-		config: config
+		config
 	});
 });
 

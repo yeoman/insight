@@ -6,7 +6,7 @@
 ## Install
 
 ```
-$ npm install --save insight
+$ npm install insight
 ```
 
 
@@ -25,16 +25,16 @@ $ npm install --save insight
 
 ### Google Analytics (GA)
 
-Currently Insight should to be used with GA set up as web tracking due to use of URLs. Future plan include refactoring to work with GA set up for app-based tracking and the [Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/v1/).
+Currently, Insight should be used with GA set up as web tracking due to use of URLs. Future plans include refactoring to work with GA set up for app-based tracking and the [Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/v1/).
 
-For debugging, Insight can track OS version, node version and version of the app that implements Insight. Please set up custom dimensions per below screenshot. This is a temporary solution until Insight is refactored into app-based tracking.
+For debugging, Insight can track OS version, Node.js version, and version of the app that implements Insight. Please set up custom dimensions per below screenshot. This is a temporary solution until Insight is refactored into app-based tracking.
 
 ![GA custom dimensions screenshot](screenshot-ga-custom-dimensions.png)
 
 
 ## Collected Data
 
-Insight cares deeply about the security of your user's data, and strives to be fully transparent with what it tracks. All data is sent via HTTPS secure connections. Insight provides API to offer an easy way for users to opt-out at any time.
+Insight cares deeply about the security of your user's data and strives to be fully transparent with what it tracks. All data is sent via HTTPS secure connections. Insight provides API to offer an easy way for users to opt-out at any time.
 
 Below is what Insight is capable of tracking. Individual implementation can choose to not track some items.
 
@@ -192,7 +192,7 @@ Asks the user permission to opt-in to tracking and sets the `optOut` property in
 
 ![askPermission screenshot](screenshot-askpermission.png)
 
-Optionally supply your own `message` and `callback`. If `message` is `null`, default message will be used. The callback will be called with the arguments `error` and `optIn` when the prompt is done, and is useful for when you want to continue the execution while the prompt is running.
+Optionally supply your own `message` and `callback`. If `message` is `null`, default message will be used. The callback will be called with the arguments `error` and `optIn` when the prompt is done and is useful for when you want to continue the execution while the prompt is running.
 
 #### .optOut
 
