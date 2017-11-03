@@ -31,8 +31,8 @@
 	],
 	"dependencies": {
 		"async": "^2.1.4",
-		"chalk": "^1.0.0",
-		"configstore": "^2.1.0",
+		"chalk": "^2.3.0",
+		"configstore": "^3.1.1",
 		"inquirer": "^3.0.1",
 		"lodash.debounce": "^4.0.8",
 		"os-name": "^2.0.1",
@@ -42,9 +42,9 @@
 	},
 	"devDependencies": {
 		"ava": "*",
-		"execa": "^0.7.0",
+		"execa": "^0.8.0",
 		"object-values": "^1.0.0",
-		"sinon": "*",
+		"sinon": "^4.1.1",
 		"xo": "^0.18.2"
 	}
 }
