@@ -186,13 +186,13 @@ Type: `integer`
 
 Event value: A numeric value associated with the event (e.g. 42).
 
-#### .askPermission([message, callback])
+#### .askPermission([message])
 
 Asks the user permission to opt-in to tracking and sets the `optOut` property in `config`. You can also choose to set `optOut` property in `config` manually.
 
 ![askPermission screenshot](screenshot-askpermission.png)
 
-Optionally supply your own `message` and `callback`. If `message` is `null`, default message will be used. The callback will be called with the arguments `error` and `optIn` when the prompt is done and is useful for when you want to continue the execution while the prompt is running.
+Optionally supply your own `message`. If `message` is `null`, default message will be used. This also resolves with the new value of `optIn` when the prompt is done and is useful for when you want to continue the execution while the prompt is running.
 
 #### .optOut
 
