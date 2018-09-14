@@ -11,7 +11,7 @@
 	},
 	"main": "lib",
 	"engines": {
-		"node": ">=4"
+		"node": ">=6"
 	},
 	"scripts": {
 		"test": "xo && ava --timeout=20s"
