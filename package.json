@@ -46,7 +46,7 @@
 		"uuid": "^3.0.0"
 	},
 	"devDependencies": {
-		"ava": "*",
+		"ava": "^1.4.1",
 		"execa": "^0.10.0",
 		"object-values": "^1.0.0",
 		"sinon": "^4.1.1",
