@@ -12,7 +12,7 @@ test('skip when using the --no-insight flag', async t => {
 });
 
 test('skip in CI mode', async t => {
-	const CI = process.env.CI;
+	const {CI} = process.env;
 	process.env.CI = true;
 
 	const err = await t.throws(execa('node', ['./test/fixtures/sub-process.js'], {stdio: 'inherit'}));
@@ -22,8 +22,8 @@ test('skip in CI mode', async t => {
 });
 
 test('skip after timeout', async t => {
-	const CI = process.env.CI;
-	const permissionTimeout = process.env.permissionTimeout;
+	const {CI} = process.env;
+	const {permissionTimeout} = process.env;
 
 	process.env.CI = true;
 	process.env.permissionTimeout = 0.1;
