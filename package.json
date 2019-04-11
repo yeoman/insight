@@ -16,6 +16,11 @@
 	"scripts": {
 		"test": "xo && ava --timeout=20s"
 	},
+	"xo": {
+		"ignores": [
+			"test/fixtures"
+		]
+	},
 	"files": [
 		"lib"
 	],
@@ -41,10 +46,10 @@
 		"uuid": "^3.0.0"
 	},
 	"devDependencies": {
-		"ava": "*",
+		"ava": "^1.4.1",
 		"execa": "^0.10.0",
 		"object-values": "^1.0.0",
 		"sinon": "^4.1.1",
-		"xo": "^0.20.3"
+		"xo": "^0.24.0"
 	}
 }
