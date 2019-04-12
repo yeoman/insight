@@ -46,7 +46,7 @@ test.cb('only forks once if many pages are tracked in the same event loop run', 
 
 test.cb('debounces forking every 100 millis (close together)', t => {
 	const insight = newInsight();
-	setTimeout(() => insight.track('0'), 0);
+	insight.track('0');
 	setTimeout(() => insight.track('50'), 50);
 	setTimeout(() => insight.track('100'), 100);
 	setTimeout(() => insight.track('150'), 150);
@@ -64,7 +64,7 @@ test.cb('debounces forking every 100 millis (close together)', t => {
 
 test.cb('debounces forking every 100 millis (far apart)', t => {
 	const insight = newInsight();
-	setTimeout(() => insight.track('0'), 0);
+	insight.track('0');
 	setTimeout(() => insight.track('50'), 50);
 	setTimeout(() => insight.track('100'), 100);
 	setTimeout(() => insight.track('150'), 150);
