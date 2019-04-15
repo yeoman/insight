@@ -133,9 +133,9 @@ Default: `'undefined'`
 #### config
 
 Type: `Object`<br>
-Default: An instance of [`configstore`](https://github.com/yeoman/configstore)
+Default: An instance of [`conf`](https://github.com/sindresorhus/conf)
 
-If you want to use your own configuration mechanism instead of the default `configstore`-based one, you can provide an object that has to implement two synchronous methods:
+If you want to use your own configuration mechanism instead of the default `conf`-based one, you can provide an object that has to implement two synchronous methods:
 
 - `get(key)`
 - `set(key, value)`
