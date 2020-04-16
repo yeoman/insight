@@ -1,4 +1,4 @@
-# Insight [![Build Status](https://secure.travis-ci.org/yeoman/insight.svg?branch=master)](http://travis-ci.org/yeoman/insight)
+# Insight [![Build Status](https://secure.travis-ci.org/yeoman/insight.svg?branch=master)](https://travis-ci.org/yeoman/insight)
 
 > Understand how your tool is being used by anonymously reporting usage metrics to [Google Analytics](https://www.google.com/analytics/) or [Yandex.Metrica](https://metrica.yandex.com)
 
@@ -15,8 +15,8 @@ $ npm install insight
 ### Google Analytics (GA)
 
 - Use [Embed API](https://developers.google.com/analytics/devguides/reporting/embed/v1/) to embed charts
-- Use [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v3/) or [Real Time Reporting API](https://developers.google.com/analytics/devguides/reporting/realtime/v3/) to access raw data, then build custom visualization, e.g. [metrics from Bower](http://bower.io/stats/)
-- Use GA's dashboards directly, e.g. metrics from [Yeoman](http://yeoman.io):
+- Use [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v3/) or [Real Time Reporting API](https://developers.google.com/analytics/devguides/reporting/realtime/v3/) to access raw data, then build custom visualization, e.g. [metrics from Bower](https://bower.io/stats/)
+- Use GA's dashboards directly, e.g. metrics from [Yeoman](https://yeoman.io):
 
 ![analytics screenshot](screenshot-ga-dashboard.png)
 
@@ -108,7 +108,7 @@ insight.track('foo', 'bar');
 **Required**<br>
 Type: `string`
 
-Your Google Analytics [trackingCode](https://support.google.com/analytics/bin/answer.py?hl=en&answer=1008080) or Yandex.Metrica [counter id](http://help.yandex.com/metrika/?id=1121963).
+Your Google Analytics [trackingCode](https://support.google.com/analytics/bin/answer.py?hl=en&answer=1008080) or Yandex.Metrica [counter id](https://help.yandex.com/metrika/?id=1121963).
 
 #### trackingProvider
 
