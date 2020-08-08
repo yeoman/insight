@@ -1,7 +1,7 @@
-import qs from 'querystring';
-import osName from 'os-name';
-import test from 'ava';
-import Insight from '../lib';
+const qs = require('querystring');
+const osName = require('os-name');
+const test = require('ava');
+const Insight = require('../lib');
 
 const pkg = 'yeoman';
 const ver = '0.0.0';
@@ -26,8 +26,8 @@ const insight = new Insight({
 });
 
 test('form valid request for pageview', t => {
-	const reqObj = insight._getRequestObj(ts, pageviewPayload);
-	const _qs = qs.parse(reqObj.body);
+	const requestObject = insight._getRequestObj(ts, pageviewPayload);
+	const _qs = qs.parse(requestObject.body);
 
 	t.is(_qs.tid, code);
 	t.is(Number(_qs.cid), Number(insight.clientId));
@@ -38,8 +38,8 @@ test('form valid request for pageview', t => {
 });
 
 test('form valid request for eventTracking', t => {
-	const reqObj = insight._getRequestObj(ts, eventPayload);
-	const _qs = qs.parse(reqObj.body);
+	const requestObject = insight._getRequestObj(ts, eventPayload);
+	const _qs = qs.parse(requestObject.body);
 
 	t.is(_qs.tid, code);
 	t.is(Number(_qs.cid), Number(insight.clientId));

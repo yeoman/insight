@@ -1,6 +1,6 @@
-import sinon from 'sinon';
-import test from 'ava';
-import Insight from '../lib';
+const sinon = require('sinon');
+const test = require('ava');
+const Insight = require('../lib');
 
 const pkg = 'yeoman';
 const ver = '0.0.0';

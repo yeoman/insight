@@ -1,21 +1,21 @@
-import objectValues from 'object-values';
-import sinon from 'sinon';
-import test from 'ava';
-import Insight from '../lib';
+const objectValues = require('object-values');
+const sinon = require('sinon');
+const test = require('ava');
+const Insight = require('../lib');
 
 test('throw exception when trackingCode or packageName is not provided', t => {
 	/* eslint-disable no-new */
 	t.throws(() => {
 		new Insight({});
-	}, Error);
+	});
 
 	t.throws(() => {
 		new Insight({trackingCode: 'xxx'});
-	}, Error);
+	});
 
 	t.throws(() => {
 		new Insight({packageName: 'xxx'});
-	}, Error);
+	});
 	/* eslint-enable no-new */
 });
 

@@ -11,7 +11,7 @@
 	},
 	"main": "lib",
 	"engines": {
-		"node": ">=6"
+		"node": ">=7.6"
 	},
 	"scripts": {
 		"test": "xo && ava --timeout=20s"
@@ -35,21 +35,21 @@
 		"metrica"
 	],
 	"dependencies": {
-		"async": "^2.6.2",
-		"chalk": "^2.4.2",
-		"conf": "^1.4.0",
-		"inquirer": "^6.3.1",
+		"async": "^3.2.0",
+		"chalk": "^4.1.0",
+		"conf": "^7.1.1",
+		"inquirer": "^7.3.3",
 		"lodash.debounce": "^4.0.8",
 		"os-name": "^3.1.0",
-		"request": "^2.88.0",
-		"tough-cookie": "^3.0.1",
-		"uuid": "^3.3.2"
+		"request": "^2.88.2",
+		"tough-cookie": "^4.0.0",
+		"uuid": "^8.3.0"
 	},
 	"devDependencies": {
-		"ava": "^1.4.1",
-		"execa": "^1.0.0",
+		"ava": "^3.11.1",
+		"execa": "^4.0.3",
 		"object-values": "^2.0.0",
-		"sinon": "^7.3.1",
-		"xo": "^0.24.0"
+		"sinon": "^9.0.2",
+		"xo": "^0.32.1"
 	}
 }
