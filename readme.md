@@ -9,8 +9,6 @@
 $ npm install insight
 ```
 
-- Requires Node 10.x
-
 
 ## Access data / generate dashboards
 
