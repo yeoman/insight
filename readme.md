@@ -2,13 +2,11 @@
 
 > Understand how your tool is being used by anonymously reporting usage metrics to [Google Analytics](https://www.google.com/analytics/) or [Yandex.Metrica](https://metrica.yandex.com)
 
-
 ## Install
 
 ```
 $ npm install insight
 ```
-
 
 ## Access data / generate dashboards
 
@@ -20,7 +18,6 @@ $ npm install insight
 
 ![analytics screenshot](screenshot-ga-dashboard.png)
 
-
 ## Provider Setup
 
 ### Google Analytics (GA)
@@ -30,7 +27,6 @@ Currently, Insight should be used with GA set up as web tracking due to use of U
 For debugging, Insight can track OS version, Node.js version, and version of the app that implements Insight. Please set up custom dimensions per below screenshot. This is a temporary solution until Insight is refactored into app-based tracking.
 
 ![GA custom dimensions screenshot](screenshot-ga-custom-dimensions.png)
-
 
 ## Collected Data
 
@@ -43,7 +39,6 @@ Below is what Insight is capable of tracking. Individual implementation can choo
 - Name and version of packages involved with command used
 - Version of node.js & OS for developer debugging
 - A random & absolutely anonymous ID
-
 
 ## Usage
 
@@ -98,41 +93,42 @@ insight.track('foo', 'bar');
 // Recorded in Yandex.Metrica as `http://<package-name>.insight/foo/bar`
 ```
 
-
 ## API
 
 ### Insight(options)
 
 #### trackingCode
 
-**Required**<br>
+**Required**\
 Type: `string`
 
 Your Google Analytics [trackingCode](https://support.google.com/analytics/bin/answer.py?hl=en&answer=1008080) or Yandex.Metrica [counter id](https://help.yandex.com/metrika/?id=1121963).
 
 #### trackingProvider
 
-Type: `string`<br>
-Default: `google`<br>
-Values: `google` `yandex`
+Type: `string`\
+Default: `'google'`\
+Values: `'google' | 'yandex'`
 
 Tracking provider to use.
 
 #### pkg
 
+Type: `object`
+
 ##### name
 
-**Required**<br>
+**Required**\
 Type: `string`
 
 ##### version
 
-Type: `string`<br>
+Type: `string`\
 Default: `'undefined'`
 
 #### config
 
-Type: `Object`<br>
+Type: `object`\
 Default: An instance of [`conf`](https://github.com/sindresorhus/conf)
 
 If you want to use your own configuration mechanism instead of the default `conf`-based one, you can provide an object that has to implement two synchronous methods:
@@ -142,7 +138,7 @@ If you want to use your own configuration mechanism instead of the default `conf
 
 ### Instance methods
 
-#### .track(keyword, [keyword, ...])
+#### .track(keyword, ...keyword?)
 
 Accepts keywords which ends up as a path in Analytics.
 
@@ -162,14 +158,14 @@ Accepts event category, action, label and value as described in the [GA event tr
 
 ##### category
 
-**Required**<br>
+**Required**\
 Type: `string`
 
 Event category: Typically the object that was interacted with (e.g. 'Video').
 
 ##### action
 
-**Required**<br>
+**Required**\
 Type: `string`
 
 Event action: The type of interaction (e.g. 'play').
@@ -186,7 +182,7 @@ Type: `integer`
 
 Event value: A numeric value associated with the event (e.g. 42).
 
-#### .askPermission([message])
+#### .askPermission(message?)
 
 Asks the user permission to opt-in to tracking and sets the `optOut` property in `config`. You can also choose to set `optOut` property in `config` manually.
 
@@ -197,8 +193,3 @@ Optionally supply your own `message`. If `message` is `null`, default message wi
 #### .optOut
 
 Returns a boolean whether the user has opted out of tracking. Should preferably only be set by a user action, eg. a prompt.
-
-
-## License
-
-BSD-2-Clause © Google

@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import test from 'ava';
-import Insight from '../lib';
+import Insight from '../lib/index.js';
 
 const pkg = 'yeoman';
 const ver = '0.0.0';
@@ -11,14 +11,14 @@ let insight;
 test.beforeEach(() => {
 	config = {
 		get: sinon.spy(() => true),
-		set: sinon.spy()
+		set: sinon.spy(),
 	};
 
 	insight = new Insight({
 		trackingCode: 'xxx',
 		packageName: pkg,
 		packageVersion: ver,
-		config
+		config,
 	});
 });
 

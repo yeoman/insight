@@ -1,7 +1,7 @@
-import qs from 'querystring';
+import qs from 'querystring'; // eslint-disable-line unicorn/prefer-node-protocol, no-restricted-imports
 import osName from 'os-name';
 import test from 'ava';
-import Insight from '../lib';
+import Insight from '../lib/index.js';
 
 const pkg = 'yeoman';
 const ver = '0.0.0';
@@ -9,25 +9,25 @@ const code = 'GA-1234567-1';
 const ts = Date.UTC(2013, 7, 24, 22, 33, 44);
 const pageviewPayload = {
 	path: '/test/path',
-	type: 'pageview'
+	type: 'pageview',
 };
 const eventPayload = {
 	category: 'category',
 	action: 'action',
 	label: 'label',
 	value: 'value',
-	type: 'event'
+	type: 'event',
 };
 
 const insight = new Insight({
 	trackingCode: code,
 	packageName: pkg,
-	packageVersion: ver
+	packageVersion: ver,
 });
 
 test('form valid request for pageview', t => {
-	const reqObj = insight._getRequestObj(ts, pageviewPayload);
-	const _qs = qs.parse(reqObj.body);
+	const requestObject = insight._getRequestObj(ts, pageviewPayload);
+	const _qs = qs.parse(requestObject.body);
 
 	t.is(_qs.tid, code);
 	t.is(Number(_qs.cid), Number(insight.clientId));
@@ -38,8 +38,8 @@ test('form valid request for pageview', t => {
 });
 
 test('form valid request for eventTracking', t => {
-	const reqObj = insight._getRequestObj(ts, eventPayload);
-	const _qs = qs.parse(reqObj.body);
+	const requestObject = insight._getRequestObj(ts, eventPayload);
+	const _qs = qs.parse(requestObject.body);
 
 	t.is(_qs.tid, code);
 	t.is(Number(_qs.cid), Number(insight.clientId));
