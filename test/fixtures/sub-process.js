@@ -11,6 +11,6 @@ if (process.env.permissionTimeout) {
 	insight._permissionTimeout = process.env.permissionTimeout;
 }
 
-insight.askPermission('', () => {
+insight.askPermission('').then(() => {
 	process.exit(145);
 });
