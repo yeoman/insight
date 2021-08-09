@@ -43,7 +43,7 @@
 		"os-name": "^4.0.1",
 		"request": "^2.88.0",
 		"tough-cookie": "^4.0.0",
-		"uuid": "^3.3.2"
+		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
 		"ava": "^2.4.0",
