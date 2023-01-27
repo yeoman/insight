@@ -1,5 +1,5 @@
 import qs from 'querystring'; // eslint-disable-line unicorn/prefer-node-protocol, no-restricted-imports
-import osName from 'os-name';
+import {osInfo} from 'systeminformation';
 import test from 'ava';
 import Insight from '../lib/index.js';
 
@@ -25,20 +25,28 @@ const insight = new Insight({
 	packageVersion: ver,
 });
 
-test('form valid request for pageview', t => {
-	const requestObject = insight._getRequestObj(ts, pageviewPayload);
+const osName = async () => {
+	const osData = await osInfo();
+	return process.platform === 'darwin'
+		? osData.codename
+		: osData.distro;
+};
+
+test('form valid request for pageview', async t => {
+	const requestObject = await insight._getRequestObj(ts, pageviewPayload);
 	const _qs = qs.parse(requestObject.body);
 
 	t.is(_qs.tid, code);
 	t.is(Number(_qs.cid), Number(insight.clientId));
 	t.is(_qs.dp, pageviewPayload.path);
-	t.is(_qs.cd1, osName());
+
+	t.is(_qs.cd1, await osName());
 	t.is(_qs.cd2, process.version);
 	t.is(_qs.cd3, ver);
 });
 
-test('form valid request for eventTracking', t => {
-	const requestObject = insight._getRequestObj(ts, eventPayload);
+test('form valid request for eventTracking', async t => {
+	const requestObject = await insight._getRequestObj(ts, eventPayload);
 	const _qs = qs.parse(requestObject.body);
 
 	t.is(_qs.tid, code);
@@ -47,7 +55,7 @@ test('form valid request for eventTracking', t => {
 	t.is(_qs.ea, eventPayload.action);
 	t.is(_qs.el, eventPayload.label);
 	t.is(_qs.ev, eventPayload.value);
-	t.is(_qs.cd1, osName());
+	t.is(_qs.cd1, await osName());
 	t.is(_qs.cd2, process.version);
 	t.is(_qs.cd3, ver);
 });

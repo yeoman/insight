@@ -40,8 +40,8 @@
 		"conf": "^10.0.1",
 		"inquirer": "^6.3.1",
 		"lodash.debounce": "^4.0.8",
-		"os-name": "^4.0.1",
 		"request": "^2.88.0",
+		"systeminformation": "^5.17.4",
 		"tough-cookie": "^4.0.0",
 		"uuid": "^8.3.2"
 	},

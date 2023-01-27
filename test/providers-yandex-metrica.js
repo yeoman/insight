@@ -21,7 +21,7 @@ test('form valid request', async t => {
 	const request = require('request');
 
 	// Test querystrings
-	const requestObject = insight._getRequestObj(ts, pageviewPayload);
+	const requestObject = await insight._getRequestObj(ts, pageviewPayload);
 	const _qs = requestObject.qs;
 
 	t.is(_qs['page-url'], `http://${pkg}.insight/test/path?version=${ver}`);
